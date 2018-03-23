@@ -14,14 +14,14 @@ Validation of overffiting is performed based on hyperparameter fitting.
 ## Settings
 Set proper values in API_settings.py to enable connection to poloniex crypto exchange, google data, reddit scrapering
 poloniex_API_key = ""   
-poloniex_API_secret = "" 
-google_username = "" 
-google_password = "" 
-client_id = "" 
-client_secret = "" 
-user_agent = 'Python Scraping App' 
+poloniex_API_secret = ""    
+google_username = ""    
+google_password = ""    
+client_id = ""    
+client_secret = ""    
+user_agent = 'Python Scraping App'    
 
-## Windows
+## Install Windows
 conda create -n tensorflow-p2 python=3.6   
 conda activate tensorflow-p2   
 conda install numpy pandas matplotlib tensorflow jupyter notebook scipy scikit-learn nb_conda    
