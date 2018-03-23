@@ -11,10 +11,12 @@ The optimizations selects a proper method and a preprocessing pair, the selected
 ## Validation
 Validation of overffiting is performed based on hyperparameter fitting.
 
-##Settings
+## Settings
 Set proper values in API_settings.py to enable connection to poloniex crypto exchange, google data, reddit scrapering
 poloniex_API_key = ""
+
 poloniex_API_secret = ""
+
 google_username = ""
 google_password = ""
 client_id = ""
