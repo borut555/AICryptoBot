@@ -1,6 +1,6 @@
 # AICryptoBot
 
-AICryptoBot is artificial intelligent crypto trading algorithm (bot) based on machine learning and deep learning. Program is written in python to generate cryptocurrency trading strategies. 
+AICryptoBot is artificial intelligence crypto trading algorithm (bot) based on machine learning and deep learning. Program is written in python to generate cryptocurrency trading strategies. 
 Some ideas and solutions are taken from project https://github.com/owocki/pytrader
 
 ## Optimization of machine learning methods
