@@ -32,7 +32,6 @@ def hash_rate():
 
     return times, hash_rates
 
-
 def convert_timestamp_to_unix_time(timestamps):
     unix_times = []
     for i in range(len(timestamps.index)):

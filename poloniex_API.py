@@ -1,5 +1,5 @@
 import urllib
-import urllib2
+#import urllib2
 import json
 import time
 import hmac,hashlib
@@ -29,16 +29,16 @@ class poloniex:
     def api_query(self, command, req={}):
 
         if(command == "returnTicker" or command == "return24Volume"):
-            ret = urllib2.urlopen(urllib2.Request('https://poloniex.com/public?command=' + command))
+            ret = urllib.urlopen(urllib.Request('https://poloniex.com/public?command=' + command))
             return json.loads(ret.read())
         elif(command == "returnOrderBook"):
-            ret = urllib2.urlopen(
-                urllib2.Request(
+            ret = urllib.urlopen(
+                urllib.Request(
                     'https://poloniex.com/public?command=' + command + '&currencyPair=' + str(req['currencyPair'])))
             return json.loads(ret.read())
         elif(command == "returnMarketTradeHistory"):
-            ret = urllib2.urlopen(
-                urllib2.Request(
+            ret = urllib.urlopen(
+                urllib.Request(
                     'https://poloniex.com/public?command=' + "returnTradeHistory" + '&currencyPair='
                     + str(req['currencyPair'])))
             return json.loads(ret.read())

@@ -25,8 +25,8 @@ def strategy_profit(
     strategy_score = normalise_and_centre_score(
         strategy_score,
         up_threshold,
-        low_threshold,
-        max_scale=strategy_dictionary['max_scale'])
+        low_threshold)
+        #max_scale=strategy_dictionary['max_scale'])
 
     cash_value[0] = 1 - strategy_score[0]
     crypto_value[0] = strategy_score[0] * (1 - effective_fee_factor)
@@ -141,18 +141,24 @@ def post_process_training_results(strategy_dictionary, fitting_dictionary, data)
         data.fractional_close[fitting_dictionary['validation_indices']],
         strategy_dictionary)
 
-    fitting_dictionary['portfolio_value'],\
-        fitting_dictionary['n_trades'],\
-        cash_value,\
-        crypto_value,\
-        fitting_dictionary['test_strategy_score']\
+    """
+    fitting_dictionary['portfolio_value'], fitting_dictionary['n_trades'], cash_value, crypto_value, fitting_dictionary['test_strategy_score']\
         = strategy_profit(
         fitting_dictionary['test_strategy_score'],
         data.fractional_close[fitting_dictionary['test_indices']],
         strategy_dictionary,
         strategy_dictionary['low_threshold'],
         strategy_dictionary['up_threshold'])
-
+    """
+    fitting_dictionary['portfolio_value'], fitting_dictionary['n_trades'], cash_value, crypto_value, fitting_dictionary['fitted_strategy_score']\
+        = strategy_profit(
+        fitting_dictionary['fitted_strategy_score'],
+        data.fractional_close[fitting_dictionary['test_indices']],
+        strategy_dictionary,
+        strategy_dictionary['low_threshold'],
+        strategy_dictionary['up_threshold'])
+    
+    
     fitting_dictionary['validation_portfolio_value'],\
         fitting_dictionary['validation_trades'],\
         _,\
@@ -210,24 +216,22 @@ def output_strategy_results(strategy_dictionary, fitting_dictionary, data_to_pre
             val_data)
 
     if strategy_dictionary['output_flag']:
-        print "Fitting time: ", toc()
+        print ("Fitting time: ", toc())
         
-        print "Raw profit", fitting_dictionary['portfolio_value'][-1]
-        print "Fractional profit compared to buy and hold: ", profit
-        print "Mean squared error: ", fitting_dictionary['error']
-        print "Window: ", strategy_dictionary['windows']
-        print "Target step :", strategy_dictionary['target_step']
-        print "Fitting model: ", strategy_dictionary['ml_mode']
-        print "Regression/classification: ", strategy_dictionary['regression_mode']
-        print "Number of trades: ", fitting_dictionary['n_trades']
-        print "Offset: ", strategy_dictionary['offset']
+        print ("Raw profit", fitting_dictionary['portfolio_value'][-1])
+        print ("Fractional profit compared to buy and hold: ", profit)
+        print ("Mean squared error: ", fitting_dictionary['error'])
+        print ("Window: ", strategy_dictionary['windows'])
+        print ("Target step :", strategy_dictionary['target_step'])
+        print ("Fitting model: ", strategy_dictionary['ml_mode'])
+        print ("Regression/classification: ", strategy_dictionary['regression_mode'])
+        print ("Number of trades: ", fitting_dictionary['n_trades'])
+        print ("Offset: ", strategy_dictionary['offset'])
 
         if momentum_dict is not None:
-            print "Simple Momentum Profit: ", profit_factor(
-            momentum_dict['portfolio_value'],
-            prediction_data)
+            print ("Simple Momentum Profit: ", profit_factor, momentum_dict['portfolio_value'],prediction_data)
 
-        print "\n"
+        print ("\n")
 
     if strategy_dictionary['plot_flag']:
         plt.figure(1)

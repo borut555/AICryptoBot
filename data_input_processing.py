@@ -25,6 +25,8 @@ SENTIMENT_KEYWORDS = {
 class Data:   
     def __init__(self, currency_pair, scraper_currency, period, web_flag, start=None, end=None,
                  offset=None, n_days=None, filename=None):
+        
+        
         self.date = []
         self.price = []
         self.close = []
@@ -74,7 +76,7 @@ class Data:
         end_index = (np.abs(candle_array[:, 4] - end_index)).argmin()
         start_index = (np.abs(candle_array[:, 4] - start_index)).argmin()
 
-        period_index = period / 300
+        period_index = round(period / 300)
 
         self.volume = candle_array[start_index:end_index:period_index, 0]
         self.date = candle_array[start_index:end_index:period_index, 4]
@@ -90,7 +92,11 @@ class Data:
             self.low[i] = np.min(candle_array[loop_start:loop_start + period_index, 3])
 
     def candle_input_web(self, currency_pair, start, end, period):
+        
+        print ("input web")
         poloniex_session = poloniex(poloniex_API_key, poloniex_API_secret)
+        
+        print ("poloniex")
 
         candle_json = poloniex_session.returnChartData(currency_pair, start, end, period)
 

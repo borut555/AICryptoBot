@@ -106,33 +106,33 @@ def tic():
 
 def retrieve_data(ticker, scraper_currency, strategy_dictionary, filename):
     data_local = None
-    while data_local is None:
-        try:
-            if strategy_dictionary['web_flag']:
-                end = time() - strategy_dictionary['offset'] * SEC_IN_DAY
+    #while data_local is None:
+    #    try:
+    if strategy_dictionary['web_flag']:
+        end = time() - strategy_dictionary['offset'] * SEC_IN_DAY
 
-                start = end - SEC_IN_DAY * strategy_dictionary['n_days']
+        start = end - SEC_IN_DAY * strategy_dictionary['n_days']
 
-                data_local = Data(
-                    ticker,
-                    scraper_currency,
-                    strategy_dictionary['candle_size'],
-                    strategy_dictionary['web_flag'],
-                    start=start,
-                    end=end,
-                )
+        data_local = Data(
+            ticker,
+            scraper_currency,
+            strategy_dictionary['candle_size'],
+            strategy_dictionary['web_flag'],
+            start=start,
+            end=end,
+        )
 
-            else:
-                data_local = Data(
-                    ticker, scraper_currency,
-                    strategy_dictionary['candle_size'],
-                    strategy_dictionary['web_flag'],
-                    offset=strategy_dictionary['offset'],
-                    filename=filename,
-                    n_days=strategy_dictionary['n_days'])
+    else:
+        data_local = Data(
+            ticker, scraper_currency,
+            strategy_dictionary['candle_size'],
+            strategy_dictionary['web_flag'],
+            offset=strategy_dictionary['offset'],
+            filename=filename,
+            n_days=strategy_dictionary['n_days'])
 
-        except Exception:
-            pass
+    #   except Exception:
+    #       pass
 
     data_local.normalise_data()
 
@@ -160,8 +160,8 @@ def offset_scan_validation(strategy_dictionary, data_to_predict, fitting_inputs,
         total_profit += profit_factor
 
     underlined_output('Averages: ')
-    print 'Total profit: ', total_profit
-    print 'Average error: ', total_error
+    print ('Total profit: ', total_profit)
+    print ('Average error: ', total_error)
 
 
 def tensorflow_offset_scan_validation(strategy_dictionary, data_to_predict, fitting_inputs, fitting_targets, offsets):
@@ -182,8 +182,8 @@ def tensorflow_offset_scan_validation(strategy_dictionary, data_to_predict, fitt
         total_profit += profit_fraction
 
     underlined_output('Averages: ')
-    print 'Total profit: ', total_profit
-    print 'Average error: ', total_error
+    print ('Total profit: ', total_profit)
+    print ('Average error: ', total_error)
 
 
 def import_data(strategy_dictionary):
@@ -261,9 +261,9 @@ def underlined_output(string):
 
     """underline printed output"""
 
-    print string
-    print '----------------------'
-    print '\n'
+    print (string)
+    print ('----------------------')
+    print ('\n')
 
 
 def normalise_and_centre_score(strategy_score, up_threshold, low_threshold):

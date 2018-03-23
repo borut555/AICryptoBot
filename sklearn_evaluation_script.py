@@ -131,25 +131,28 @@ def fit_time_scale(strategy_dictionary_input, search_iterations_local, time_iter
 
 
 if __name__ == '__main__':
+    
+    print ("start")
     toc = tic()
+       
 
     strategy_dictionary = {
-        'trading_currencies': ['XMR', 'DASH'],
-        'ticker_1': 'XMR_DASH',
-        'scraper_currency_1': 'DASH',
+        'trading_currencies': ['BTC', 'ETH'],
+        'ticker_1': 'BTC_ETH',
+        'scraper_currency_1': 'ETH',
         'candle_size': 300,
         'n_days': 10,
         'offset': 0,
         'bid_ask_spread': 0.003,
         'transaction_fee': 0.0015,
-        'train_validation_test_ratios': [0.5, 0.2, 0.3],
+        'train_test_validation_ratios': [0.5, 0.2, 0.3],
         'output_flag': True,
         'plot_flag': False,
         'plot_last': True,
         'ml_iterations': 10,
         'target_score': 'n_steps',
         'web_flag': False,
-        'filename1': "XMR_DASH.csv",
+        'filename1': "BTC_ETH.csv",
         'regression_mode': 'regression',
         'momentum_compare': True,
         'fit_time': False,
@@ -157,8 +160,10 @@ if __name__ == '__main__':
         'windows': 20,
         'stop_loss': 0.07
     }
+    
+    print (strategy_dictionary)
 
-    data = import_data(strategy_dictionary)
+    data = import_data(strategy_dictionary)    
 
     search_iterations = 5
     time_iterations = 20

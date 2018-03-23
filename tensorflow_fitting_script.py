@@ -76,4 +76,4 @@ if __name__ == '__main__':
 
     tensorflow_offset_scan_validation(strategy_dictionary, data_to_predict, fitting_inputs, fitting_targets, offsets)
 
-    print strategy_dictionary
+    print (strategy_dictionary)
